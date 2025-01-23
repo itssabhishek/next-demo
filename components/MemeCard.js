@@ -8,7 +8,7 @@ const useIsMobile = () => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
@@ -26,7 +26,7 @@ const MemeCardContainer = ({ children }) => {
   }
 
   return (
-    <div 
+    <div
       ref={scrollRef}
       className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory"
       style={{
@@ -44,18 +44,22 @@ const MemeCardContainer = ({ children }) => {
   );
 };
 
-const MemeCard = ({ name, price, marketCap, change, verified, imageUrl }) => {
+const MemeCard = ({ name, price, marketCap, change, verified, imageUrl, backgroundColor = 'bg-[#C25353]' }) => {
   return (
     <div
       className="rounded-xl overflow-hidden border border-gray-200"
       style={{ boxShadow: "0px 4px 16px 0px #00000014" }}
     >
       <div className="aspect-square bg-gray-100">
+        {imageUrl ? (
         <img
           src={imageUrl}
           alt="image"
           className="w-full h-full object-cover object-center"
-        />
+        />) : (
+            <div className={`w-full h-full ${backgroundColor}`}>
+
+            </div>)}
       </div>
       <div className="p-4">
         <div className="flex items-center justify-between mb-2">
